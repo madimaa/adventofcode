@@ -4,6 +4,14 @@ import (
 	"strconv"
 )
 
+func SumSlice(a []int) (result int) {
+	for _, v := range a {
+		result += v
+	}
+
+	return
+}
+
 // ConvertToInt - takes a string input and converts it to integer
 func ConvertToInt(input string) int {
 	val, err := strconv.Atoi(input)
