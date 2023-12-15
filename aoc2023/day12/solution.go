@@ -139,10 +139,12 @@ func recursive(condition string, parity []int, cache map[string]int) (result int
 		return
 	}
 
-	act, parity := parity[0], parity[1:]
-	if v, ok := cache[fmt.Sprintf("%s %d %v", condition, act, parity)]; ok {
+	h := hotspring{condition, parity}
+	if v, ok := cache[fmt.Sprintf("%v", h)]; ok {
 		return v
 	}
+
+	act, parity := parity[0], parity[1:]
 	for i := 0; i < len(condition)-util.SumSlice(parity)-len(parity)-act+1; i++ {
 		if slices.Contains([]rune(condition)[:i], '#') {
 			break
@@ -165,7 +167,7 @@ func recursive(condition string, parity []int, cache map[string]int) (result int
 		}
 	}
 
-	cache[fmt.Sprintf("%s %d %v", condition, act, parity)] = result
+	cache[fmt.Sprintf("%v", h)] = result
 	return
 }
 
