@@ -7,14 +7,20 @@ but significantly faster on 10m+ data
 
 //Array2D - 2 dimensional array
 type Array2D struct {
-	data []interface{}
-	x    int
-	y    int
+	data  []interface{}
+	x     int
+	y     int
+	empty interface{}
 }
 
 //Create - create 2d array
 func Create(x, y int) *Array2D {
 	return &Array2D{data: make([]interface{}, x*y), x: x, y: y}
+}
+
+//CreateEmpty create 2d array with empty interface for error handling
+func CreateEmpty(x, y int, empty interface{}) *Array2D {
+	return &Array2D{data: make([]interface{}, x*y), x: x, y: y, empty: empty}
 }
 
 //Put - add element to the array
@@ -24,6 +30,10 @@ func (a2d *Array2D) Put(x, y int, value interface{}) {
 
 //Get - get value from x y index
 func (a2d *Array2D) Get(x, y int) interface{} {
+	if x < 0 || y < 0 || a2d.x <= x || a2d.y <= y {
+		return a2d.empty
+	}
+
 	return a2d.data[x*a2d.y+y]
 }
 
