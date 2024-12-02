@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/madimaa/adventofcode/aoc2023/util"
+	"github.com/madimaa/adventofcode/aoc2024/util"
 )
 
 func Part1() {

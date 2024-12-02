@@ -1,4 +1,4 @@
-module github.com/madimaa/adventofcode/aoc2023
+module github.com/madimaa/adventofcode/aoc2024
 
 go 1.21.5
 
