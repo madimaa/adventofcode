@@ -49,7 +49,7 @@ func (a2d *Array2D) GetPosition(x, y int) int {
 
 //Copy - returns a copy of the original array
 func (a2d *Array2D) Copy() *Array2D {
-	newArray := &Array2D{data: make([]interface{}, a2d.x*a2d.y), x: a2d.x, y: a2d.y}
+	newArray := &Array2D{data: make([]interface{}, a2d.x*a2d.y), x: a2d.x, y: a2d.y, empty: a2d.empty}
 	for index, val := range a2d.data {
 		newArray.data[index] = val
 	}
