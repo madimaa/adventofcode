@@ -82,12 +82,12 @@ func Part2() {
 		fileId, size int
 	}
 
-	type valami struct {
+	type filemap struct {
 		files []file
 		free  int
 	}
 
-	fileIdMap := make(map[int]valami)
+	fileIdMap := make(map[int]filemap)
 	movedIndices := make(map[int]int)
 	for i := len(digits) - 1; i > 0; i -= 2 {
 		for dfi := 1; dfi < i; dfi += 2 {
@@ -98,7 +98,7 @@ func Part2() {
 
 			if free >= digits[i] {
 				if _, ok := fileIdMap[dfi]; !ok {
-					fileIdMap[dfi] = valami{files: make([]file, 0), free: 0}
+					fileIdMap[dfi] = filemap{files: make([]file, 0), free: 0}
 				}
 
 				m := fileIdMap[dfi]
