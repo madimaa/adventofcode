@@ -29,17 +29,17 @@ func Part1() {
 		perms := getPermutations(len(v) - 1)
 		for _, perm := range perms {
 			res := v[0]
-			for i, r := range perm {
+			for i, r := range []rune(perm) {
 				switch r {
 				case '+':
 					res += v[i+1]
-				case '×':
+				case '*':
 					res *= v[i+1]
 				}
 			}
 
 			if res == k {
-				solution += res
+				solution += k
 				break
 			}
 		}
@@ -93,14 +93,14 @@ func Part2() {
 
 func getPermutations(length int) []string {
 	if length == 1 {
-		return []string{"+", "×"}
+		return []string{"+", "*"}
 	}
 
 	result := make([]string, 0)
 	fill := getPermutations(length - 1)
 	for _, v := range fill {
-		result = append(result, fmt.Sprint("+", v))
-		result = append(result, fmt.Sprint("×", v))
+		result = append(result, v+"+")
+		result = append(result, v+"*")
 	}
 
 	fill = nil
